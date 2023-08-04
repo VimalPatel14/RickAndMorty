@@ -2,8 +2,19 @@
 ### API ###
 * https://rickandmortyapi.com/api/character
 
-* MVVM architecture pattern
-* Database integration
+:white_check_mark: Kotlin
+
+:white_check_mark: MVVM architecture pattern
+
+:white_check_mark: Database integration
+
+:white_check_mark: ViewModel
+
+:white_check_mark: LiveData
+
+:white_check_mark: Retrofit
+
+:white_check_mark: Room
 
 * # Preview
 <table>
