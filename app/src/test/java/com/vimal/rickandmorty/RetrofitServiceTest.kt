@@ -33,12 +33,13 @@ class RetrofitServiceTest {
     @Test
     fun `get all character api test`() {
         runBlocking {
-             val mockResponse = MockResponse()
-            mockWebServer.enqueue(mockResponse.setBody("[]"))
+            val mockResponse = MockResponse()
+            val sampleJsonResponse = "{\"results\": [{\"id\": 1, \"name\": \"Rick Sanchez\"}, {\"id\": 2, \"name\": \"Morty Smith\"}]}"
+            mockWebServer.enqueue(mockResponse.setBody(sampleJsonResponse))
             val response = apiService.getAllCharacter()
             val request = mockWebServer.takeRequest()
-            assertEquals("/character",request.path)
-            assertEquals(true, response?.isSuccessful == true)
+            assertEquals("/character", request.path)
+            assertEquals(true, response.isSuccessful)
         }
     }
 
