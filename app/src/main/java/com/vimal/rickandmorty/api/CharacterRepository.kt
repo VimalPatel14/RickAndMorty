@@ -23,7 +23,7 @@ class CharacterRepository (
         }
     }
 
-    val allNotes: LiveData<List<CharacterDto>> = characterDao.getAllNotes()
+    val allNotes: LiveData<List<CharacterDto>> = characterDao.getAllCharacter()
 
     suspend fun insert(note: CharacterDto) {
         characterDao.insert(note)
@@ -34,7 +34,7 @@ class CharacterRepository (
     }
 
     suspend fun deleteAll() {
-        characterDao.deleteAllNotes()
+        characterDao.deleteAllCharacter()
     }
 
     suspend fun update(note: CharacterDto) {

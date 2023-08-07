@@ -30,10 +30,15 @@ class CharacterDetailsViewModel (application: Application,
             when (val response = mainRepository.getCharacterDetails()) {
                 is NetworkState.Success -> {
                     movieList.postValue(response.data)
-                    for (i in response.data.episode.indices) {
-                        Log.e("vml", "EpisodesID: $i")
-                        getEpisode(i + 1)
+                    response.data.episode.forEach { episodeUrl ->
+
+                        val episodeId = episodeUrl.substringAfterLast('/').toInt()
+                        getEpisode(episodeId)
                     }
+//                    for (i in response.data.episode.indices) {
+//                        Log.e("vml", "EpisodesID: $i")
+//                        getEpisode(i + 1)
+//                    }
                 }
 
                 is NetworkState.Error -> {
