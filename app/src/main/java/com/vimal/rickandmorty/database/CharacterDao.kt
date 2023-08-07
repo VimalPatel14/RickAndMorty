@@ -22,8 +22,8 @@ interface CharacterDao {
     suspend fun delete(note: CharacterDto)
 
     @Query("DELETE FROM characterDto_table")
-    suspend fun deleteAllNotes()
+    suspend fun deleteAllCharacter()
 
     @Query("Select * from characterDto_table order by id ASC")
-    fun getAllNotes(): LiveData<List<CharacterDto>>
+    fun getAllCharacter(): LiveData<List<CharacterDto>>
 }

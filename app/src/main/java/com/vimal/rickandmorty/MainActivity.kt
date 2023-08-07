@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
         adapter = CharacterAdapter(this@MainActivity, this@MainActivity)
 
         val retrofitService = RetrofitService.getInstance()
-        val dao = AppDatabase.getDatabase(application).getNotesDao()
+        val dao = AppDatabase.getDatabase(application).getCharacterDao()
         val characterRepository = CharacterRepository(retrofitService, dao)
 
         val layoutManager = GridLayoutManager(this, 2)
@@ -111,23 +111,26 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
         startActivity(intent)
     }
 
-    private val recyclerViewOnScrollListener = object : RecyclerView.OnScrollListener() {
-        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-            super.onScrolled(recyclerView, dx, dy)
+    private val recyclerViewOnScrollListener =
+        object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
 
-            val layoutManager = recyclerView.layoutManager
-            if (layoutManager is LinearLayoutManager) {
-                val visibleItemCount = layoutManager.childCount
-                val totalItemCount = layoutManager.itemCount
-                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+                val layoutManager = recyclerView.layoutManager
+                if (layoutManager is LinearLayoutManager) {
+                    val visibleItemCount = layoutManager.childCount
+                    val totalItemCount = layoutManager.itemCount
+                    val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
 
-                if (!isLoading && (visibleItemCount + firstVisibleItemPosition) >= totalItemCount && firstVisibleItemPosition >= 0) {
-                    // We are at the bottom and not currently loading data, initiate the next page load
-                    loadNextPage()
+                    if (!isLoading && (visibleItemCount + firstVisibleItemPosition) >=
+                        totalItemCount && firstVisibleItemPosition >= 0
+                    ) {
+                        //We are at the bottom and not currently loading data
+                        loadNextPage()
+                    }
                 }
             }
         }
-    }
 
     private fun loadNextPage() {
         if (!isLoading) {
@@ -138,10 +141,9 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
         }
     }
 
-    private fun setSpanCount(count: Int){
+    private fun setSpanCount(count: Int) {
         val layoutManager = GridLayoutManager(this, count)
         binding.recyclerview.layoutManager = layoutManager
         adapter.notifyDataSetChanged()
     }
-
 }

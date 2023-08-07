@@ -12,7 +12,7 @@ import com.vimal.rickandmorty.model.Episode
 @TypeConverters(StringListConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun getNotesDao(): CharacterDao
+    abstract fun getCharacterDao(): CharacterDao
 
     abstract fun getEpisodeDao(): EpisodeDao
 
