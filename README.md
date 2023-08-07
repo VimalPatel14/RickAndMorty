@@ -2,6 +2,9 @@
 ### API ###
 * https://rickandmortyapi.com/api/character
 
+### APK ###
+* https://github.com/VimalPatel14/RickAndMorty/blob/master/RickandMorty.apk
+
 :white_check_mark: Kotlin
 
 :white_check_mark: MVVM architecture pattern
